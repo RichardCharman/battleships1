@@ -16,13 +16,17 @@ class Board
   end
 
   def place(ship)
-    fail 'Out of bounds' if ship.size > 1
+    fail 'Out of bounds' if out_of_bounds(ship)
     fail 'occupied' if overlap(ship)
 
     ships << ship
   end
 
   private
+
+  def out_of_bounds(ship)
+    ship.size > 1
+  end
 
   def overlap(ship)
     ship_positions.include?(ship.position)

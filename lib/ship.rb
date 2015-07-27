@@ -1,22 +1,9 @@
-
 class Ship
+  attr_reader :position, :size, :direction
 
   def initialize(position, size, direction)
-    @Position = position
-    @Size = size
-    @Direction = direction
+    @position = position
+    @size = size
+    @direction = direction
   end
-    
-  def position
-  	@Position
-  end
-  
-  def size
-    @Size
-  end
-  
-  def direction
-  	@Direction
-  end
-
 end
