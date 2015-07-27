@@ -2,11 +2,10 @@ require_relative 'ship'
 
 class Board 
   require 'terminal-table'
-  attr_accessor :boats
-
+  attr_reader :ships
   
   def initialize
-  	 @boats = []
+  	 @ships = []
   end
   
   def table
@@ -17,20 +16,19 @@ class Board
   end
 
   def place(ship)
-    if ship.size > 1
-    	fail 'Out of bounds' 
-    elsif overlap(ship) == true
-    	fail 'occupied' 
-    else
-    	boats << ship	
-    end
+    fail 'Out of bounds' if ship.size > 1
+    fail 'occupied' if overlap(ship)
+
+    ships << ship
   end
 
+  private
+
   def overlap(ship)
-  	if @boats.map{|ship| ship.position}.include?(ship.position)
-  		return true
-  	else 
-  		return false
-  	end
+    ship_positions.include?(ship.position)
+  end
+
+  def ship_positions
+    ships.map{ |ship| ship.position }
   end
 end
