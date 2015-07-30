@@ -2,24 +2,15 @@ require_relative 'ship'
 
 class Board 
   require 'terminal-table'
-  attr_reader :ships
+  attr_reader :ships, :game_board
   
   def initialize
-  	 @ships = []
+  	@ships = []
+    @game_board = Array.new(10){Array.new(10)}
   end
   
-  def table
-    game_board = Terminal::Table.new do |t|
-      t << ['A1']
-    end
-    print game_board.class
-  end
-
-  def place(ship)
-    fail 'Out of bounds' if out_of_bounds(ship)
-    fail 'occupied' if overlap(ship)
-
-    ships << ship
+  def place(ship, x, y)
+    game_board[y-1][x.ord-65] = ship
   end
 
   private
@@ -28,11 +19,5 @@ class Board
     ship.size > 1
   end
 
-  def overlap(ship)
-    ship_positions.include?(ship.position)
-  end
 
-  def ship_positions
-    ships.map{ |ship| ship.position }
-  end
 end
