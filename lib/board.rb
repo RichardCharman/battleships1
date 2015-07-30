@@ -16,7 +16,9 @@ class Board
   end
 
   def fire(x,y)
-
+    if game_board[y-1][x.ord-65] != nil
+      status = "hit"
+    end
   end
 
 end

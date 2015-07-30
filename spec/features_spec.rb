@@ -31,6 +31,4 @@ describe 'Features' do
 
   it { expect(ship).to respond_to(:status) }
 
-#  board.fire(x,y)
-
 end
