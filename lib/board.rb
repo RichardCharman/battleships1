@@ -1,7 +1,7 @@
 require_relative 'ship'
 
 class Board 
-  require 'terminal-table'
+
   attr_reader :ships, :game_board
   
   def initialize
@@ -10,14 +10,13 @@ class Board
   end
   
   def place(ship, x, y)
+    fail 'Out of bounds!' if y > 10 || (x.ord)-65 > 9 || y < 1 || (x.ord) < 65
+    fail "Ship already at location!" if game_board[y-1][x.ord-65] != nil
     game_board[y-1][x.ord-65] = ship
   end
 
-  private
+  def fire(x,y)
 
-  def out_of_bounds(ship)
-    ship.size > 1
   end
-
 
 end
