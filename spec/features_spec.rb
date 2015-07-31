@@ -53,6 +53,28 @@ describe 'Features' do
     it { expect(ship).to respond_to(:sunk?) }
   end
   
+  describe 'create ships by using ship names' do
+    it 'creates a destroyer' do
+      ship = Ship.destroyer
+      expect(ship.size).to eq Ship::DESTROYER_SIZE
+    end
+    it 'creates a cruiser' do
+      ship = Ship.cruiser
+      expect(ship.size).to eq Ship::CRUISER_SIZE
+    end
+    it 'creates a submarine' do
+      ship = Ship.submarine
+      expect(ship.size).to eq Ship::SUBMARINE_SIZE
+    end
+    it 'creates a battleship' do
+      ship = Ship.battleship
+      expect(ship.size).to eq Ship::BATTLESHIP_SIZE
+    end
+    it 'creates a carrier' do
+      ship = Ship.carrier
+      expect(ship.size).to eq Ship::CARRIER_SIZE
+    end
+  end
 
 
 end
