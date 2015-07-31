@@ -16,8 +16,9 @@ class Board
   end
 
   def fire(x,y)
+    fail 'Out of bounds!' if y > 10 || (x.ord)-65 > 9 || y < 1 || (x.ord) < 65
     if game_board[y-1][x.ord-65] != nil
-      status = "hit"
+      game_board[y-1][x.ord-65].hit
     end
   end
 

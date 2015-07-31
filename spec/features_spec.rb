@@ -20,15 +20,24 @@ describe 'Features' do
         expect{board.place(ship,"A",1)}.to raise_error "Ship already at location!"
       end
     end
+  
+    describe "#fire" do
+      it { expect{board.fire("A",1)}.not_to raise_error }
+      it "at location" do
+        board.place(ship, "A", 1)
+        board.fire("A",1)
+        expect(ship.status).to eq "hit"   
+      end
+      it "raises error if out of bounds" do
+        expect{board.fire("K",11)}.to raise_error "Out of bounds!"
+      end
+    end
   end
 
-  it { expect{board.fire("A",1)}.not_to raise_error }
-  it "fires at location" do
-    board.place(ship, "A", 1)
-    board.fire("A",1)
-    expects(ship.status).to eq "hit"   
+  describe "Ship" do
+    it { expect(ship).to respond_to(:status) }
   end
+  
 
-  it { expect(ship).to respond_to(:status) }
 
 end

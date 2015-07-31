@@ -5,5 +5,9 @@ class Ship
     @size = size
     @status = "miss"
   end
+
+  def hit
+  	@status = "hit"
+  end
   
 end

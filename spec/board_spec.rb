@@ -18,8 +18,18 @@ describe Board do
     	expect{subject.place(ship,"A", 1)}.to raise_error "Ship already at location!"
     end
   end
-  
-  it { is_expected.to respond_to(:fire).with(2).arguments}
-  
+
+  describe "#fire" do
+    it { is_expected.to respond_to(:fire).with(2).arguments}
+    it "changes ship status" do
+      ship = spy :ship
+      subject.place(ship,"A",1)
+      subject.fire("A",1)
+      expect(ship).to have_received :hit
+    end
+    it "raises error if out of bounds" do 
+      expect{ subject.fire("K",11) }.to raise_error 'Out of bounds!'
+    end
+  end
 
 end
