@@ -30,6 +30,19 @@ describe Board do
     it "raises error if out of bounds" do 
       expect{ subject.fire("K",11) }.to raise_error 'Out of bounds!'
     end
+    it "asks if the hit ship has been sunk" do
+      ship = spy :ship
+      subject.place(ship,"A",1)
+      subject.fire("A",1)
+      expect(ship).to have_received :sunk?
+    end
+    it "reports a ship that has been sunk" do
+      allow(ship).to receive(:hit)
+      allow(ship).to receive(:sunk?) { true }
+
+      subject.place(ship,"A",1)
+      expect(subject.fire("A",1)).to eq "You sunk my ship"
+    end
   end
 
 end

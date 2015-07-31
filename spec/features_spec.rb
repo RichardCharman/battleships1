@@ -31,11 +31,16 @@ describe 'Features' do
       it "raises error if out of bounds" do
         expect{board.fire("K",11)}.to raise_error "Out of bounds!"
       end
+      it "reports a sunken ship" do
+        board.place(ship, "A", 1)
+        expect(board.fire("A",1)).to eq "You sunk my ship"   
+      end
     end
   end
 
   describe "Ship" do
     it { expect(ship).to respond_to(:status) }
+    it { expect(ship).to respond_to(:sunk?) }
   end
   
 

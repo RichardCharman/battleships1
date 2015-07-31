@@ -17,4 +17,13 @@ describe Ship do
       expect(subject.status).to eq "hit"
     end
   end
+
+  it { is_expected.to respond_to(:sunk?) }
+  it "returns false if aksed if a new ship is sunk" do
+    expect(subject.sunk?).to eq false
+  end
+  it "returns true if ship has been sunk" do 
+    subject.hit
+    expect(subject.sunk?).to eq true
+  end
 end

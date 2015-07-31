@@ -9,5 +9,10 @@ class Ship
   def hit
   	@status = "hit"
   end
+
+  def sunk?
+    return false if status == "miss"
+    true
+  end
   
 end
