@@ -36,6 +36,16 @@ describe 'Features' do
         expect(board.fire("A",1)).to eq "You sunk my ship"   
       end
     end
+    it 'logs hits' do
+      board.place(ship, "A", 1)
+      board.fire("A", 1)
+      expect(board.log[0][0]).to eq "hit"
+    end
+    
+    it 'logs misses' do
+      board.fire("B", 2)
+      expect(board.log[1][1]).to eq "miss"      
+    end
   end
 
   describe "Ship" do

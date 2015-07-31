@@ -44,5 +44,19 @@ describe Board do
       expect(subject.fire("A",1)).to eq "You sunk my ship"
     end
   end
-
+  
+  it { is_expected.to respond_to :log }
+  
+  it 'logs hits' do
+    allow(ship).to receive(:hit)
+    allow(ship).to receive(:sunk?)
+    subject.place(ship, "A", 1)
+    subject.fire("A", 1)
+    expect(subject.log[0][0]).to eq "hit"
+  end
+  
+  it 'logs misses' do
+    subject.fire("A", 1)
+    expect(subject.log[0][0]).to eq "miss"
+  end
 end
